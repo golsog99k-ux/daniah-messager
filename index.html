@@ -1,164 +1,401 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danilah Elite v9.0</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        @keyframes rgb {
-            0%{color:#ff0000}
-            25%{color:#00ff00}
-            50%{color:#0000ff}
-            75%{color:#ffff00}
-            100%{color:#ff00ff}
-        }
-        body{background:#0a0a12;color:#fff;font-family:Arial,sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-        .app{max-width:480px;margin:0 auto;min-height:100vh}
-        .header{background:#1a0f2e;padding:14px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #7c3aed}
-        .logo{font-size:20px;font-weight:800;animation:rgb 3s infinite}
-        .menu-btn{background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
-        .page{display:none}.page.on{display:block}
-        .content{padding:14px}
-        button{display:block;width:100%;padding:14px;margin:7px 0;font-size:15px;font-weight:600;border:none;border-radius:12px;cursor:pointer}
-        .bp{background:#7c3aed;color:#fff}.bo{background:transparent;border:2px solid #7c3aed;color:#a78bfa}
-        .bg{background:#f59e0b;color:#000}.br{background:#ef4444;color:#fff}.bb{background:#06b6d4;color:#000}
-        input{display:block;width:100%;padding:13px;margin:6px 0;background:#0d0d18;border:1px solid #2a2a38;color:#fff;font-size:15px;border-radius:10px}
-        .box{background:#141420;border-radius:14px;padding:14px;margin:8px 0;border:1px solid #2a2a38}
-        .sm{font-size:12px;color:#9ca3af}
-        .sidebar{position:fixed;top:0;left:-280px;width:270px;height:100vh;background:#141420;z-index:100;transition:left .25s;overflow-y:auto}
-        .sidebar.open{left:0}
-        .overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:99;display:none}
-        .overlay.show{display:block}
-        .mi{display:flex;align-items:center;gap:12px;padding:14px 20px;font-size:15px;cursor:pointer;border:none;background:none;color:#fff;width:100%;text-align:left}
-        .mi:active{background:#2a2a38}
-        .list-item{display:flex;align-items:center;gap:12px;padding:13px;background:#141420;border-radius:14px;margin:6px 0;cursor:pointer;border:1px solid #2a2a38}
-        .avatar{width:44px;height:44px;border-radius:50%;background:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-        .msg-ai{background:#1a1a28;border-left:3px solid #06b6d4;padding:10px 14px;border-radius:10px;margin:6px 0;font-size:14px}
-        .msg-user{background:#7c3aed;padding:10px 14px;border-radius:10px;margin:6px 0;font-size:14px;text-align:right}
-        .online-badge{background:rgba(34,197,94,.2);color:#22c55e;padding:4px 12px;border-radius:20px;font-size:13px;display:inline-block;margin:8px 0}
-        .badge{display:inline-block;padding:3px 8px;border-radius:12px;font-size:11px;margin:2px}
-        .bv{background:rgba(245,158,11,.2);color:#f59e0b}.bprem{background:rgba(6,182,212,.2);color:#06b6d4}
-        .rgb-text{animation:rgb 3s infinite;font-weight:800}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Danilah</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a12;color:#fff;font-family:Arial;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.page{display:none;padding:14px}
+.page.on{display:block;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+button{display:block;width:100%;padding:14px;margin:6px 0;font-size:15px;font-weight:600;border:none;border-radius:10px;cursor:pointer}
+.bp{background:#7c3aed;color:#fff}
+.bo{background:none;border:2px solid #7c3aed;color:#a78bfa}
+.bg{background:#f59e0b;color:#000}
+.br{background:#ef4444;color:#fff}
+.bb{background:#06b6d4;color:#000}
+input{display:block;width:100%;padding:13px;margin:6px 0;background:#111;border:1px solid #333;color:#fff;font-size:15px;border-radius:8px}
+.box{background:#141420;border:1px solid #2a2a38;border-radius:12px;padding:12px;margin:6px 0}
+.sm{font-size:12px;color:#999}
+.list-item{display:flex;align-items:center;gap:10px;padding:12px;background:#141420;border:1px solid #2a2a38;border-radius:12px;margin:5px 0;cursor:pointer}
+.avatar{width:40px;height:40px;border-radius:50%;background:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.sidebar{position:fixed;top:0;left:-260px;width:250px;height:100vh;background:#141420;z-index:100;transition:left .25s;overflow-y:auto;padding:14px}
+.sidebar.open{left:0}
+.overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:99;display:none}
+.overlay.show{display:block}
+.mi{display:flex;align-items:center;gap:10px;padding:13px 16px;font-size:15px;cursor:pointer;border:none;background:none;color:#fff;width:100%;text-align:left}
+.three-dots{position:absolute;top:10px;right:14px;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;width:auto;padding:4px}
+.msg-user{background:#7c3aed;padding:10px;border-radius:10px;margin:4px 0;text-align:right}
+.msg-bot{background:#141420;border:1px solid #2a2a38;padding:10px;border-radius:10px;margin:4px 0}
+</style>
 </head>
 <body>
-<div class="app">
-    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-    <div class="sidebar" id="sidebar">
-        <div style="padding:20px;text-align:center;background:#1a0f2e">
-            <div class="avatar" id="mAv" style="margin:0 auto 10px;width:65px;height:65px;font-size:30px">🐉</div>
-            <b id="mName">Имя</b><p class="sm" id="mUser">@user</p>
-            <div id="mBadges"></div><p class="sm" id="mStars" style="color:#f59e0b">⭐ 0 звёзд</p>
-        </div>
-        <button class="mi" onclick="openPage('chats')">💬 Чаты</button>
-        <button class="mi" onclick="openPage('ai')">🤖 Danilah AI</button>
-        <button class="mi" onclick="openPage('contacts')">👥 Контакты</button>
-        <button class="mi" onclick="openPage('channels')">📢 Каналы</button>
-        <button class="mi" onclick="openPage('ideas')">💡 Чат идей</button>
-        <button class="mi" onclick="openPage('calls')">📞 Звонки</button>
-        <button class="mi" onclick="openPage('settings')">⚙️ Настройки</button>
-        <button class="mi" onclick="openPage('about')">ℹ️ О Danilah</button>
-        <div style="border-top:1px solid #2a2a38;margin:8px 0"></div>
-        <button class="mi" id="adminBtn" onclick="openPage('admin')" style="display:none">👑 Админ</button>
-        <button class="mi" onclick="logout()" style="color:#ef4444">🚪 Выйти</button>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="sidebar" id="sidebar">
+    <div style="text-align:center;padding:15px;background:#141420;border-radius:12px;margin-bottom:10px">
+        <div class="avatar" id="mAv" style="margin:0 auto 8px;width:60px;height:60px;font-size:28px">🐉</div>
+        <b id="mName">Имя</b>
+        <p class="sm" id="mUser">@user</p>
+        <p class="sm" id="mStars" style="color:#f59e0b">⭐ 0</p>
     </div>
-    <div class="header" id="mainHeader" style="display:none">
-        <button class="menu-btn" onclick="openMenu()">☰</button>
-        <span class="logo">🐉 DANILAH</span><span>👑</span>
-    </div>
-    <div class="content" id="mainContent" style="display:none"></div>
-    <div class="page on" id="welcomePage">
-        <div style="text-align:center;padding:50px 20px">
-            <p style="font-size:70px">🐉</p>
-            <h1 style="font-size:26px" class="rgb-text">DANILAH ELITE</h1>
-            <p>Мессенджер</p>
-            <p class="sm">Закрытая экосистема @Durov</p>
-            <div class="online-badge">👥 Онлайн: 1</div>
-            <br><br><button class="bp" onclick="showLogin()">🚀 Начать</button>
-        </div>
-    </div>
-    <div class="page" id="loginPage">
-        <div style="padding:25px 20px">
-            <h2 style="text-align:center" class="rgb-text">🐉 DANILAH ELITE</h2>
-            <p class="sm" style="text-align:center">Выберите вход</p>
-            <br><button class="bp" onclick="showPhone()">📱 По телефону</button>
-            <button class="bo" onclick="showCode()">🔐 По коду</button>
-            <button class="bo" onclick="showPromo()">🎫 Промокод</button>
-            <button class="bo" onclick="showAIHelp()">🤖 Нет кода</button>
-        </div>
-    </div>
-    <div class="page" id="promoPage">
-        <div class="content">
-            <h2 style="color:#a78bfa">🎫 Активировать промокод</h2>
-            <p class="sm">Введите промокод для бонусов</p>
-            <input type="text" id="promoInput" placeholder="Промокод">
-            <button class="bp" onclick="activatePromo()">Активировать</button>
-            <p class="sm" id="promoMsg"></p>
-            <button class="bo" onclick="showLogin()">← Назад</button>
-        </div>
-    </div>
-    <div class="page" id="aiHelpPage">
-        <div class="content">
-            <h2 style="color:#a78bfa">🤖 Danilah AI</h2>
-            <div class="box" style="height:200px;overflow-y:auto" id="aiHelpChat">
-                <div class="msg-ai">👋 Привет! Я обработал заявку! @Durov скоро ответит с кодом!</div>
-            </div>
-            <input type="text" id="aiHelpInput" placeholder="Напишите...">
-            <button class="bp" onclick="sendAIHelp()">Отправить</button>
-            <button class="bo" onclick="showLogin()">← Назад</button>
-        </div>
-    </div>
-    <div class="page" id="phonePage">
-        <div class="content">
-            <h2 style="color:#a78bfa">📱 Телефон</h2>
-            <input type="tel" id="phone" placeholder="+7 999 123-45-67">
-            <button class="bp" onclick="sendSMS()">Получить код</button>
-            <p class="sm" id="smsMsg"></p>
-            <button class="bo" onclick="showLogin()">← Назад</button>
-        </div>
-    </div>
-    <div class="page" id="codePage">
-        <div class="content">
-            <h2 style="color:#a78bfa">🔐 Вход по коду</h2>
-            <input type="text" id="accessCode" placeholder="Код доступа">
-            <input type="text" id="loginUser" placeholder="@Username">
-            <button class="bp" onclick="loginWithCode()">Войти</button>
-            <p class="sm" id="loginErr" style="color:#ef4444"></p>
-            <button class="bo" onclick="showLogin()">← Назад</button>
-        </div>
+    <button class="mi" onclick="openPage('main')">💬 Чаты</button>
+    <button class="mi" onclick="openPage('ai')">🤖 Danilah AI</button>
+    <button class="mi" onclick="openPage('profile')">👤 Профиль</button>
+    <button class="mi" onclick="openPage('search')">🔍 Поиск</button>
+    <button class="mi" onclick="openPage('promo')">🎫 Промокоды</button>
+    <button class="mi" onclick="openPage('stars')">⭐ Звёзды</button>
+    <button class="mi" onclick="openPage('gifts')">🎁 Подарки</button>
+    <button class="mi" onclick="openPage('ideas')">💡 Чат идей</button>
+    <button class="mi" onclick="openPage('about')">ℹ️ О Danilah</button>
+    <button class="mi" onclick="openPage('apps')" id="appsBtn" style="display:none">📋 Заявки</button>
+    <button class="mi" onclick="logout()" style="color:#ef4444">🚪 Выйти</button>
+</div>
+
+<div class="page on" id="welcome">
+    <div style="text-align:center;padding:40px 0">
+        <p style="font-size:70px">🐉</p>
+        <h1 style="color:#a78bfa">DANILAH</h1>
+        <br>
+        <button class="bp" onclick="go('login')">🚀 Начать</button>
     </div>
 </div>
+
+<div class="page" id="login">
+    <h2 style="color:#a78bfa;text-align:center">Вход</h2>
+    <button class="bp" onclick="go('phone')">📱 По телефону</button>
+    <button class="bo" onclick="go('code')">🔐 По коду</button>
+    <button class="bo" onclick="go('promo')">🎫 Промокод</button>
+    <button class="bo" onclick="go('help')">🤖 Нет кода</button>
+</div>
+
+<div class="page" id="phone">
+    <h2 style="color:#a78bfa">📱 Телефон</h2>
+    <input type="tel" id="phoneInp" placeholder="+7 999 123-45-67">
+    <button class="bp" onclick="phoneLogin()">Получить код</button>
+    <button class="bo" onclick="go('login')">← Назад</button>
+</div>
+
+<div class="page" id="code">
+    <h2 style="color:#a78bfa">🔐 Вход по коду</h2>
+    <input type="text" id="codeInp" placeholder="Код доступа">
+    <input type="text" id="userInp" placeholder="@Username">
+    <button class="bp" onclick="codeLogin()">Войти</button>
+    <button class="bo" onclick="go('login')">← Назад</button>
+</div>
+
+<div class="page" id="promo">
+    <h2 style="color:#a78bfa">🎫 Промокоды</h2>
+    <input type="text" id="promoInp" placeholder="Промокод">
+    <button class="bp" onclick="usePromo()">Активировать</button>
+    <p class="sm" id="promoMsg"></p>
+    <button class="bo" onclick="go('login')">← Назад</button>
+</div>
+
+<div class="page" id="help">
+    <h2 style="color:#a78bfa">🤖 Бот заявок</h2>
+    <div class="box" style="height:180px;overflow-y:auto" id="helpChat">
+        <div class="msg-bot">👋 Привет! Напиши — @Durov ответит!</div>
+    </div>
+    <input type="text" id="helpInp" placeholder="Напишите...">
+    <button class="bp" onclick="helpSend()">Отправить</button>
+    <button class="bo" onclick="go('login')">← Назад</button>
+</div>
+
+<div class="page" id="main">
+    <div style="position:relative;text-align:center;padding:8px 0;margin-bottom:10px">
+        <h2 style="color:#a78bfa">🐉 DANILAH</h2>
+        <button class="three-dots" onclick="openMenu()">⋮</button>
+    </div>
+    <div class="list-item" onclick="openAI()"><div class="avatar">🤖</div><div style="flex:1"><b>Danilah AI</b></div></div>
+    <div class="list-item" onclick="openSupport()"><div class="avatar">🛟</div><div style="flex:1"><b>Поддержка</b></div></div>
+    <div id="ownerChats"></div>
+    <div class="list-item" onclick="go('ideas')"><div class="avatar">💡</div><div style="flex:1"><b>Чат идей</b></div></div>
+</div>
+
+<div class="page" id="ai">
+    <h2 style="color:#a78bfa">🤖 Danilah AI</h2>
+    <div class="box" style="height:180px;overflow-y:auto" id="aiChat"><div class="msg-bot">👋 Спроси!</div></div>
+    <input type="text" id="aiInp" placeholder="Вопрос...">
+    <button class="bp" onclick="aiSend()">Отправить</button>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="applicantChat">
+    <h2 style="color:#a78bfa">💬 Чат с заявителем</h2>
+    <div class="box" style="height:150px;overflow-y:auto" id="appChatBox"></div>
+    <div class="box">
+        <p class="sm">Выдать доступ:</p>
+        <input type="text" id="newCode" placeholder="Код доступа">
+        <input type="text" id="newUser" placeholder="@Username">
+        <button class="bg" onclick="giveAccess()">✅ Выдать</button>
+    </div>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="profile">
+    <h2 style="color:#a78bfa">👤 Профиль</h2>
+    <div class="box" style="text-align:center">
+        <div class="avatar" id="profAv" style="margin:0 auto 10px;width:70px;height:70px;font-size:30px;cursor:pointer" onclick="document.getElementById('avInp').click()">🐉</div>
+        <input type="file" id="avInp" accept="image/*" style="display:none" onchange="upAv()">
+        <b id="profName">Имя</b>
+        <p class="sm" id="profUser">@user</p>
+        <p class="sm" id="profStars" style="color:#f59e0b">⭐ 0</p>
+    </div>
+    <button class="bp" onclick="document.getElementById('avInp').click()">🖼 Аватарка</button>
+    <button class="bo" onclick="changeNick()">✏️ Имя</button>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<!-- ПОИСК -->
+<div class="page" id="search">
+    <h2 style="color:#a78bfa">🔍 Поиск</h2>
+    <input type="text" id="searchInp" placeholder="Поиск..." oninput="searchUsers()">
+    <div id="searchResults"></div>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="support">
+    <h2 style="color:#a78bfa">🛟 Поддержка</h2>
+    <button class="bo" onclick="supAsk()">Как получить код?</button>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="stars">
+    <h2 style="color:#a78bfa">⭐ Звёзды</h2>
+    <p>У вас: <b id="starCount">0</b> ⭐</p>
+    <div class="box"><b>100⭐ = 50₽</b> <button class="bg" onclick="buyS(100)">Купить</button></div>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="gifts">
+    <h2 style="color:#a78bfa">🎁 Подарки</h2>
+    <p class="sm">У вас: <b id="starCount2">0</b> ⭐</p>
+    <div class="box"><b>🧸 Мишка — 15⭐</b> <button class="bb" onclick="buyG('Мишка',15)">Отправить</button></div>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="ideas">
+    <h2 style="color:#a78bfa">💡 Чат идей</h2>
+    <input type="text" id="ideaInp" placeholder="Идея...">
+    <button class="bp" onclick="addIdea()">Отправить</button>
+    <div id="ideaList"></div>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="about">
+    <h2 style="color:#a78bfa">ℹ️ О Danilah</h2>
+    <div class="box" style="text-align:center"><p style="font-size:50px">🐉</p><b>Danilah</b></div>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
+<div class="page" id="apps">
+    <h2 style="color:#a78bfa">📋 Заявки</h2>
+    <div id="appsList"><p class="sm">Нет заявок</p></div>
+    <button class="bo" onclick="go('main')">← Назад</button>
+</div>
+
 <script>
-var db=JSON.parse(localStorage.getItem('ddb'))||{users:[{id:'o1',name:'Владелец',username:'@Durov',password:'admin123',role:'owner',status:'premium',verified:true,emoji:'🐉',phone:'',stars:0,freeMessageUsed:false}],apps:[],msgs:[],code:'QQO1098',sms:{},announcements:[],ideas:[],gifts:[{name:'🧸 Мишка',price:15},{name:'🎁 Подарок',price:25},{name:'💍 Колечко',price:50},{name:'🚀 Ракета',price:100},{name:'👑 Danilah',price:1000}],starPrices:[{stars:100,price:50},{stars:150,price:100},{stars:200,price:150},{stars:500,price:450},{stars:1000,price:700},{stars:10000,price:'Запросить'}],updates:[{title:'🎉 Запуск',desc:'Danilah запущен!'}],promos:{'freetest2026':{type:'tester',stars:100},'sspremssqw':{type:'premium',days:2},'2026Daniag':{type:'tester',stars:200},'daniagfreestar':{type:'stars',stars:200}},usedPromos:{}};
-function save(){localStorage.setItem('ddb',JSON.stringify(db))}
-var me=JSON.parse(localStorage.getItem('dme'))||null;
-function hideAll(){var ps=document.querySelectorAll('.page');for(var i=0;i<ps.length;i++)ps[i].classList.remove('on')}
-function showLogin(){hideAll();document.getElementById('loginPage').classList.add('on')}
-function showPhone(){hideAll();document.getElementById('phonePage').classList.add('on')}
-function showCode(){hideAll();document.getElementById('codePage').classList.add('on')}
-function showPromo(){hideAll();document.getElementById('promoPage').classList.add('on')}
-function showAIHelp(){hideAll();document.getElementById('aiHelpPage').classList.add('on')}
-function showMain(){hideAll();document.getElementById('mainHeader').style.display='flex';document.getElementById('mainContent').style.display='block';loadChats()}
-function activatePromo(){var code=document.getElementById('promoInput').value.trim();var msg=document.getElementById('promoMsg');if(!code){msg.textContent='Введите промокод';msg.style.color='#ef4444';return}var promo=db.promos[code];if(!promo){msg.textContent='❌ Неверный промокод';msg.style.color='#ef4444';return}var userId=me?me.id:'guest';if(db.usedPromos[userId+'_'+code]){msg.textContent='❌ Уже использован';msg.style.color='#ef4444';return}var bonus='';if(promo.type==='tester'){bonus='✅ Тестер! +'+promo.stars+'⭐';if(me){me.stars=(me.stars||0)+promo.stars;me.role=me.role||'tester'}}if(promo.type==='premium'){bonus='✅ Premium на '+promo.days+' дня!';if(me){me.status='premium'}}if(promo.type==='stars'){bonus='✅ +'+promo.stars+'⭐';if(me){me.stars=(me.stars||0)+promo.stars}}db.usedPromos[userId+'_'+code]=true;if(me){for(var i=0;i<db.users.length;i++){if(db.users[i].id===me.id){db.users[i].stars=me.stars;db.users[i].status=me.status;db.users[i].role=me.role;break}}localStorage.setItem('dme',JSON.stringify(me));}save();msg.textContent=bonus;msg.style.color='#22c55e';document.getElementById('promoInput').value='';}
-function sendAIHelp(){var inp=document.getElementById('aiHelpInput');var txt=inp.value.trim();if(!txt)return;var box=document.getElementById('aiHelpChat');box.innerHTML+='<div class="msg-user">'+txt+'</div>';inp.value='';setTimeout(function(){box.innerHTML+='<div class="msg-ai">✅ Заявка отправлена! @Durov скоро ответит с кодом! 💜</div>';box.scrollTop=box.scrollHeight},500)}
-function sendSMS(){var ph=document.getElementById('phone').value.replace(/\D/g,'');if(ph.length<10){alert('Введите номер');return}var code=Math.floor(100000+Math.random()*900000).toString();db.sms[ph]=code;save();document.getElementById('smsMsg').textContent='📱 Код: '+code;var found=null;for(var i=0;i<db.users.length;i++){if(db.users[i].phone===ph)found=db.users[i]}if(!found){found={id:'u'+Date.now(),name:'Пользователь',username:'@user'+ph.slice(-4),password:'',role:'user',status:'basic',verified:false,emoji:'🐉',phone:ph,stars:0,freeMessageUsed:false};db.users.push(found);save()}me=found;localStorage.setItem('dme',JSON.stringify(me));showMain()}
-function loginWithCode(){var code=document.getElementById('accessCode').value.trim();var user=document.getElementById('loginUser').value.trim();if(!code||!user){document.getElementById('loginErr').textContent='Заполните поля';return}var found=null;for(var i=0;i<db.users.length;i++){var u=db.users[i];if(u.username===user&&(u.password===code||db.code===code))found=u}if(!found){document.getElementById('loginErr').textContent='Неверно';return}me=found;localStorage.setItem('dme',JSON.stringify(me));showMain()}
-function openMenu(){document.getElementById('sidebar').classList.add('open');document.getElementById('overlay').classList.add('show');if(me){document.getElementById('mAv').textContent=me.emoji||'🐉';document.getElementById('mName').textContent=me.name;document.getElementById('mUser').textContent=me.username;document.getElementById('mStars').textContent='⭐ '+(me.stars||0)+' звёзд';var b='';if(me.verified)b+='<span class="badge bv">⭐</span> ';if(me.status==='premium')b+='<span class="badge bprem">💎</span> ';document.getElementById('mBadges').innerHTML=b;document.getElementById('adminBtn').style.display=me.role==='owner'?'flex':'none'}}
-function closeMenu(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
-function openPage(p){closeMenu();if(p==='chats')loadChats();if(p==='ai')loadAI();if(p==='contacts')loadContacts();if(p==='channels')loadChannels();if(p==='ideas')loadIdeas();if(p==='calls')loadCalls();if(p==='settings')loadSettings();if(p==='about')loadAbout();if(p==='admin')loadAdmin()}
-function loadChats(){var c=document.getElementById('mainContent');var h='<h2 style="color:#a78bfa">💬 Чаты</h2>';h+='<div class="list-item" onclick="loadAI()"><div class="avatar">🤖</div><div style="flex:1"><b>Danilah AI</b><p class="sm">Помощник</p></div></div>';h+='<div class="list-item" onclick="loadSupport()"><div class="avatar">🛟</div><div style="flex:1"><b>Поддержка</b><p class="sm">@Durov</p></div></div>';for(var i=0;i<db.users.length;i++){var u=db.users[i];if(u.id!==me.id){h+='<div class="list-item" onclick="openChat(\''+u.username+'\',\''+u.name+'\')"><div class="avatar">'+(u.emoji||'👤')+'</div><div style="flex:1"><b>'+u.name+'</b><p class="sm">'+u.username+'</p></div></div>'}}c.innerHTML=h}
-function loadAI(){var c=document.getElementById('mainContent');c.innerHTML='<h2 style="color:#a78bfa">🤖 Danilah AI</h2><div class="box" style="height:200px;overflow-y:auto" id="aiBox"><div class="msg-ai">👋 Спроси меня!</div></div><div style="display:flex;gap:5px"><input type="text" id="aiInput" placeholder="Спроси..." style="flex:1"><button class="bp" onclick="sendAI()" style="width:auto">➤</button></div><button class="bo" onclick="loadChats()">← Назад</button>'}
-function sendAI(){var inp=document.getElementById('aiInput');var txt=inp.value.trim();if(!txt)return;var box=document.getElementById('aiBox');box.innerHTML+='<div class="msg-user">'+txt+'</div>';var q=txt.toLowerCase();var ans='🤖 Я учусь!';if(q.indexOf('кнопк')!==-1)ans='💻 Кнопка: <button onclick="функция()">Текст</button>';if(q.indexOf('привет')!==-1)ans='👋 Привет!';if(q.indexOf('звёзд')!==-1)ans='⭐ Звёзды — валюта.';if(q.indexOf('промо')!==-1)ans='🎫 Промокоды: freetest2026, sspremssqw, 2026Daniag, daniagfreestar';box.innerHTML+='<div class="msg-ai">'+ans+'</div>';inp.value=''}
-function loadSupport(){var c=document.getElementById('mainContent');c.innerHTML='<h2 style="color:#a78bfa">🛟 Поддержка</h2><div class="box"><p class="sm">Готовые вопросы:</p></div><button class="bo" onclick="supQ()">Как получить код?</button><button class="bo" onclick="supQ()">Как купить звёзды?</button><button class="bo" onclick="supQ()">Как Premium?</button><button class="bo" onclick="loadChats()">← Назад</button>'}
-function supQ(){alert('✅ Отправлено! @Durov ответит.');loadChats()}
-function loadContacts(){var c=document.getElementById('mainContent');var h='<h2 style="color:#a78bfa">👥 Контакты</h2>';for(var i=0;i<db.users.length;i++){var u=db.users[i];h+='<div class="list-item" onclick="openChat(\''+u.username+'\',\''+u.name+'\')"><div class="avatar">'+(u.emoji||'👤')+'</div><div style="flex:1"><b>'+u.name+'</b><p class="sm">'+u.username+'</p></div></div>'}c.innerHTML=h}
-function loadChannels(){var c=document.getElementById('mainContent');var h='<h2 style="color:#a78bfa">📢 Каналы</h2>';if(me.role==='owner')h+='<div class="list-item" onclick="loadAdmin(\'apps\')"><div class="avatar">📋</div><div style="flex:1"><b>Заявки</b><p class="sm">'+db.apps.length+'</p></div></div>';h+='<div class="list-item" onclick="loadAbout()"><div class="avatar">📰</div><div style="flex:1"><b>Новости</b><p class="sm">Обновления</p></div></div>';c.innerHTML=h}
-function loadIdeas(){var c=document.getElementById('mainContent');var h='<h2 style="color:#a78bfa">💡 Чат идей</h2><input type="text" id="ideaInput" placeholder="Идея..."><button class="bp" onclick="addIdea()">Отправить</button>';for(var i=0;i<db.ideas.length;i++)h+='<div class="box"><b>'+db.ideas[i].user+'</b><p>'+db.ideas[i].text+'</p></div>';h+='<button class="bo" onclick="loadChats()">← Назад</button>';c.innerHTML=h}
-function addIdea(){var t=document.getElementById('ideaInput').value.trim();if(!t)return;db.ideas.push({user:me.username,text:t});save();loadIdeas()}
-function loadCalls(){var c=document.getElementById('mainContent');c.innerHTML='<h2 style="color:#a78bfa">📞 Звонки</h2><div class="box" style="text-align:center"><p style="font-size:50px">📞</p><button class="bp" onclick="startCall()">📞 Аудиозвонок</button><button class="bb" onclick="startCall()">📹 Видеозвонок</button><p class="sm" id="callStatus"></p></div><button class="bo" onclick="loadChats()">← Назад</button>'}
-function startCall(){document.getElementById('callStatus').textContent='📞 Вызов...';setTimeout(function(){document.getElementById('callStatus').textContent='📞 Разговор...'},2000);setTimeout(function(){document.getElementById('callStatus').textContent='📞 Завершён'},5000)}
-function loadSettings(){var c=document.getElementById('mainContent');var h='<h2 style="color:#a78bfa">⚙️ Настройки</h2>';h+='<div class="box" style="text-align:center"><p style="font-size:50px">'+(me.emoji||'🐉')+'</p><b>'+me.name+'</b> '+(me.verified?'⭐':'')+(me.status==='premium'?'💎':'')+'<p class="sm">'+me.username+'</p><p style="color:#f59e0b;font-size:18px">⭐ '+(me.stars||0)+' звёзд</p></div>';h+='<button class="bg" onclick="buyStars()">⭐ Купить звёзды</button>';h+='<button class="bb" onclick="sendGift()">🎁 Подарки</button>';h+='<button class="bp" onclick="activateCode()">🎫 Активировать код</button>';if(me.role==='owner'){h+='<button class="bb" onclick="givePremium()">💎 Выдать Premium</button><button class="bg" onclick="giveStars()">⭐ Выдать звёзды</button><button class="bp" onclick="sendAnnouncement()">📢 Рассылка</button>'}else{h+='<button class="bo" onclick="alert(\'💎 Свяжитесь с @Durov\')">💎 Хочу Premium</button>'}h+='<button class="br" onclick="logout()">🚪 Выйти</button>';c.innerHTML=h}
-function buyStars(){var c=document.getElementById('mainContent');var h='<h2 style="color:#a78bfa">⭐ Купить звёзды</h2>';for(var i=0;i<db.starPrices.length;i++){var p=db.starPrices[i];h+='<div class="box" style="display:flex;justify-content:space-between"><div><b>⭐ '+p.stars+'</b><p class="sm">'+p.price+'₽</p></div><button class="bg" onclick="buyPack('+p.stars+')" style="width:auto;margin:0;padding:10px 16px">Купить</button></div>'}h+='<button class="bo" onclick="loadSettings()">← Назад</button>';c.innerHTML=h}
-function buyPack(s){me.stars=(me.stars||0)+s;for(var i=0;i<db.users.length;i++){if(db.users[i].id===me.id){db.users[i].stars=me.stars;save();break}}localStorage.setItem('dme',JSON.stringify(me));alert('✅ +'+s+'⭐');loadSettings()}
-function sendGift(){var c=document.getElementById('mainContent');var h='<h2 style="color:#a78bfa">🎁 Подарки</h2><p class="sm">⭐ '+(me.stars||0)+'</p>';for(var i=0;i<db.gifts.length;i++){var g=db.gifts[i];h+='<div class="box" style="display:flex;justify-content:space-between"><div><b>'+g.name+'</b><p class="sm">'+g.price+'⭐</p></div><button class="bb" onclick="buyGift(\''+g.name+'\','+g.price+')" style="width:auto;margin:0;padding:10px 16px">Отправить</button></div>'}h+='<button class="bo" onclick="loadSe
+var users = [
+    { username: '@Durov', password: 'admin123', name: 'Владелец', role: 'owner', stars: 999999, banned: false, avatar: '' },
+    { username: '@*#', password: ',,,', name: 'Тест', role: 'user', stars: 0, banned: false, avatar: '' }
+];
+var applications = JSON.parse(localStorage.getItem('dapps') || '[]');
+var currentUser = null;
+var currentApplicant = null;
+var usedPromos = JSON.parse(localStorage.getItem('dpromos') || '{}');
+
+function saveApps() { localStorage.setItem('dapps', JSON.stringify(applications)); }
+function savePromos() { localStorage.setItem('dpromos', JSON.stringify(usedPromos)); }
+
+function go(id) {
+    var ps = document.querySelectorAll('.page');
+    for (var i = 0; i < ps.length; i++) ps[i].classList.remove('on');
+    document.getElementById(id).classList.add('on');
+    if (id === 'main') loadOwnerChats();
+}
+
+function openMenu() {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+    if (currentUser) {
+        document.getElementById('mName').textContent = currentUser.banned ? 'ЗАБАНЕН' : currentUser.name;
+        document.getElementById('mUser').textContent = currentUser.username;
+        document.getElementById('mStars').textContent = '⭐ ' + currentUser.stars;
+    }
+    document.getElementById('appsBtn').style.display = (currentUser && currentUser.role === 'owner') ? 'flex' : 'none';
+}
+
+function closeMenu() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
+function openPage(p) { closeMenu(); if (p === 'apps') renderApps(); go(p); }
+
+function usePromo() {
+    var code = document.getElementById('promoInp').value.trim();
+    var msg = document.getElementById('promoMsg');
+    if (!code) { msg.textContent = 'Введите'; return; }
+    if (usedPromos[code]) { msg.textContent = '❌ Использован'; return; }
+    if (code === 'freetest2026') { if (currentUser) currentUser.stars += 100; msg.textContent = '✅ +100⭐'; }
+    else if (code === '2026Daniag') { if (currentUser) currentUser.stars += 200; msg.textContent = '✅ +200⭐'; }
+    else if (code === 'daniagfreestar') { if (currentUser) currentUser.stars += 200; msg.textContent = '✅ +200⭐'; }
+    else if (code === 'sspremssqw') { msg.textContent = '✅ Premium 2 дня'; }
+    else { msg.textContent = '❌ Неверно'; return; }
+    usedPromos[code] = true; savePromos(); updateStars();
+}
+
+function phoneLogin() {
+    var ph = document.getElementById('phoneInp').value.replace(/\D/g,'');
+    if (ph.length < 10) { alert('Введите номер'); return; }
+    currentUser = { username: '@user' + ph.slice(-4), password: '', name: 'Пользователь', role: 'user', stars: 0, banned: false, avatar: '' };
+    users.push(currentUser);
+    updateProfile();
+    go('main');
+}
+
+function codeLogin() {
+    var c = document.getElementById('codeInp').value.trim();
+    var u = document.getElementById('userInp').value.trim();
+    for (var i = 0; i < users.length; i++) {
+        if (users[i].username === u && (users[i].password === c || c === 'QQO1098')) {
+            if (users[i].banned) { alert('🚫 ЗАБАНЕН'); return; }
+            currentUser = users[i];
+            updateProfile();
+            go('main');
+            return;
+        }
+    }
+    alert('Неверный код');
+}
+
+function helpSend() {
+    var t = document.getElementById('helpInp').value.trim();
+    if (!t) return;
+    applications.push({ text: t, time: new Date().toLocaleTimeString() });
+    saveApps();
+    document.getElementById('helpChat').innerHTML += '<div class="msg-user">' + t + '</div>';
+    document.getElementById('helpInp').value = '';
+    setTimeout(function() { document.getElementById('helpChat').innerHTML += '<div class="msg-bot">✅ Отправлено!</div>'; }, 300);
+}
+
+function loadOwnerChats() {
+    var box = document.getElementById('ownerChats');
+    if (!currentUser || currentUser.role !== 'owner') { box.innerHTML = ''; return; }
+    if (!applications.length) { box.innerHTML = '<p class="sm">Нет заявок</p>'; return; }
+    var h = '<p class="sm">📋 Заявки:</p>';
+    for (var i = 0; i < applications.length; i++) {
+        h += '<div class="list-item" onclick="openApplicantChat(' + i + ')"><div class="avatar">📋</div><div style="flex:1"><b>Заявитель</b><p class="sm">' + applications[i].text + '</p></div></div>';
+    }
+    box.innerHTML = h;
+}
+
+function openApplicantChat(idx) {
+    currentApplicant = applications[idx];
+    document.getElementById('appChatBox').innerHTML = '<div class="msg-bot">📋 ' + currentApplicant.text + '</div>';
+    go('applicantChat');
+}
+
+function giveAccess() {
+    var code = document.getElementById('newCode').value.trim();
+    var usr = document.getElementById('newUser').value.trim();
+    if (!code || !usr) { alert('Введите'); return; }
+    users.push({ username: usr, password: code, name: usr.replace('@',''), role: 'user', stars: 0, banned: false, avatar: '' });
+    applications = applications.filter(function(a) { return a.text !== currentApplicant.text; });
+    saveApps();
+    alert('✅ Создан: ' + usr);
+    go('main');
+}
+
+function renderApps() {
+    var box = document.getElementById('appsList');
+    if (!applications.length) { box.innerHTML = '<p class="sm">Нет</p>'; return; }
+    var h = '';
+    for (var i = 0; i < applications.length; i++) {
+        h += '<div class="box"><p>' + applications[i].text + '</p><button class="bp" onclick="openApplicantChat(' + i + ')">💬 Чат</button></div>';
+    }
+    box.innerHTML = h;
+}
+
+function openAI() { go('ai'); }
+function aiSend() {
+    var t = document.getElementById('aiInp').value.trim();
+    if (!t) return;
+    document.getElementById('aiChat').innerHTML += '<div class="msg-user">' + t + '</div><div class="msg-bot">🤖 Я учусь!</div>';
+    document.getElementById('aiInp').value = '';
+}
+function openSupport() { go('support'); }
+function supAsk() { alert('✅'); go('main'); }
+
+function updateProfile() {
+    if (!currentUser) return;
+    document.getElementById('profName').textContent = currentUser.banned ? 'ЗАБАНЕН' : currentUser.name;
+    document.getElementById('profUser').textContent = currentUser.username;
+    document.getElementById('profStars').textContent = '⭐ ' + currentUser.stars;
+}
+
+function upAv() {
+    var f = document.getElementById('avInp').files[0];
+    if (!f || !currentUser) return;
+    var r = new FileReader();
+    r.onload = function(e) { currentUser.avatar = e.target.result; updateProfile(); };
+    r.readAsDataURL(f);
+}
+
+function changeNick() { var n = prompt('Новое имя:'); if (n && currentUser) { currentUser.name = n; updateProfile(); } }
+
+// ПОИСК
+function searchUsers() {
+    var q = document.getElementById('searchInp').value.trim().toLowerCase();
+    var box = document.getElementById('searchResults');
+    if (!q) { box.innerHTML = ''; return; }
+    var h = '';
+    for (var i = 0; i < users.length; i++) {
+        var u = users[i];
+        if (u.username.toLowerCase().indexOf(q) !== -1 || u.name.toLowerCase().indexOf(q) !== -1) {
+            h += '<div class="list-item" onclick="viewUser(' + i + ')"><div class="avatar">👤</div><div style="flex:1"><b>' + (u.banned ? 'ЗАБАНЕН' : u.name) + '</b><p class="sm">' + u.username + '</p></div></div>';
+        }
+    }
+    box.innerHTML = h || '<p class="sm">Не найдено</p>';
+}
+
+// ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ С КНОПКАМИ
+function viewUser(idx) {
+    var u = users[idx];
+    var h = '<b>' + (u.banned ? 'ЗАБАНЕН' : u.name) + '</b><p class="sm">' + u.username + '</p>';
+    
+    // Кнопка написать
+    if (currentUser && u.username !== currentUser.username) {
+        h += '<button class="bp" onclick="writeToUser(' + idx + ')">💬 Написать</button>';
+    }
+    
+    // Кнопка бана (только владелец)
+    if (currentUser && currentUser.role === 'owner' && u.role !== 'owner') {
+        h += '<button class="br" onclick="banUser(' + idx + ')">' + (u.banned ? '✅ Разбанить' : '🚫 ЗАБАНИТЬ') + '</button>';
+    }
+    
+    h += '<button class="bo" onclick="go(\'search\')">← Назад</button>';
+    document.getElementById('searchResults').innerHTML = '<div class="box">' + h + '</div>';
+}
+
+function writeToUser(idx) {
+    var u = users[idx];
+    var msg = prompt('Сообщение для ' + u.username + ':');
+    if (msg) { alert('✅ Отправлено!'); }
+}
+
+function banUser(idx) {
+    users[idx].banned = !users[idx].banned;
+    alert(users[idx].banned ? '🚫 ЗАБАНЕН!' : '✅ Разбанен!');
+    searchUsers();
+}
+
+function updateStars() { document.getElementById('starCount').textContent = currentUser ? currentUser.stars : 0; document.getElementById('starCount2').textContent = currentUser ? currentUser.stars : 0; }
+function buyS(n) { if (!currentUser || currentUser.role === 'owner') { alert('❌'); return; } if (confirm('Купить?')) { currentUser.stars += n; updateStars(); } }
+function buyG(name, price) { if (!currentUser || currentUser.stars < price) { alert('❌'); return; } var t = prompt('Кому?'); if (t) { currentUser.stars -= price; updateStars(); } }
+function addIdea() { var t = document.getElementById('ideaInp').value.trim(); if (!t) return; document.getElementById('ideaList').innerHTML += '<div class="box"><b>' + (currentUser ? currentUser.name : 'Гость') + '</b><p>' + t + '</p></div>'; document.getElementById('ideaInp').value = ''; }
+function logout() { currentUser = null; go('welcome'); }
+updateStars();
+</script>
+</body>
+        </html>
