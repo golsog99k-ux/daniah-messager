@@ -198,14 +198,11 @@ input{display:block;width:100%;padding:13px;margin:6px 0;background:#111;border:
 </div>
 
 <script>
-// ПОЛЬЗОВАТЕЛИ
 var users = [
-    { username: '@Durov', password: 'admin123', name: 'Владелец', role: 'owner', stars: 999999, banned: false, avatar: '' },
-    { username: '@*#', password: ',,,', name: 'Тест', role: 'user', stars: 0, banned: false, avatar: '' },
+    { username: '@Durov', password: 'QQO1098', name: 'Владелец', role: 'owner', stars: 999999, banned: false, avatar: '' },
     { username: '@avery', password: '22814886769', name: 'Avery', role: 'tester', stars: 100, banned: false, avatar: '' }
 ];
 
-// ЗАГРУЗКА АВАТАРОК ИЗ localStorage
 var savedUsers = JSON.parse(localStorage.getItem('dusers') || '[]');
 for (var si = 0; si < savedUsers.length; si++) {
     for (var uj = 0; uj < users.length; uj++) {
@@ -277,7 +274,7 @@ function codeLogin() {
     var c = document.getElementById('codeInp').value.trim();
     var u = document.getElementById('userInp').value.trim();
     for (var i = 0; i < users.length; i++) {
-        if (users[i].username === u && (users[i].password === c || c === 'QQO1098')) {
+        if (users[i].username === u && users[i].password === c) {
             if (users[i].banned) { alert('🚫 ЗАБАНЕН'); return; }
             currentUser = users[i];
             updateProfile();
@@ -401,6 +398,7 @@ function viewUser(idx) {
     }
     if (currentUser && currentUser.role === 'owner' && u.role !== 'owner') {
         h += '<button class="br" onclick="banUser(' + idx + ')">' + (u.banned ? '✅ Разбанить' : '🚫 ЗАБАНИТЬ') + '</button>';
+        h += '<button class="bb" onclick="givePremium(' + idx + ')">💎 Выдать Premium</button>';
     }
     h += '<button class="bo" onclick="go(\'search\')">← Назад</button>';
     document.getElementById('searchResults').innerHTML = '<div class="box">' + h + '</div>';
@@ -408,7 +406,8 @@ function viewUser(idx) {
 
 function writeToUser(idx) { var u = users[idx]; var msg = prompt('Сообщение для ' + u.username + ':'); if (msg) { alert('✅ Отправлено!'); } }
 function banUser(idx) { users[idx].banned = !users[idx].banned; saveUsers(); alert(users[idx].banned ? '🚫 ЗАБАНЕН!' : '✅ Разбанен!'); searchUsers(); }
+function givePremium(idx) { users[idx].status = 'premium'; saveUsers(); alert('💎 Premium выдан!'); searchUsers(); }
 function updateStars() { document.getElementById('starCount').textContent = currentUser ? currentUser.stars : 0; document.getElementById('starCount2').textContent = currentUser ? currentUser.stars : 0; }
 function buyS(n) { if (!currentUser || currentUser.role === 'owner') { alert('❌'); return; } if (confirm('Купить?')) { currentUser.stars += n; updateStars(); } }
 function buyG(name, price) { if (!currentUser || currentUser.stars < price) { alert('❌'); return; } var t = prompt('Кому?'); if (t) { currentUser.stars -= price; updateStars(); } }
-function addIdea() { var t = document.getElementById('ideaInp').value.trim(); if (!t) return; doc
+function addIdea() { var t = document.getElementById('ideaInp').v
