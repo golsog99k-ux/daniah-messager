@@ -6,84 +6,17 @@
 <title>Danilah</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a12;color:#fff;font-family:Arial;touch-action:manipulation}
-.pg{display:none;padding:14px}.pg.on{display:block}
-button{display:block;width:100%;padding:14px;margin:6px 0;font-size:15px;font-weight:600;border:none;border-radius:10px;cursor:pointer}
-.bp{background:#7c3aed;color:#fff}.bo{background:none;border:2px solid #7c3aed;color:#a78bfa}
-.bg{background:#f59e0b;color:#000}.br{background:#ef4444;color:#fff}.bb{background:#06b6d4;color:#000}
-input{display:block;width:100%;padding:13px;margin:6px 0;background:#111;border:1px solid #333;color:#fff;font-size:15px;border-radius:8px}
-.bx{background:#141420;border:1px solid #2a2a38;border-radius:12px;padding:12px;margin:6px 0}
-.sm{font-size:12px;color:#999}
-.li{display:flex;align-items:center;gap:10px;padding:12px;background:#141420;border:1px solid #2a2a38;border-radius:12px;margin:5px 0;cursor:pointer}
-.av{width:40px;height:40px;border-radius:50%;background:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
-.av img{width:100%;height:100%;object-fit:cover}
-.mb{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px 8px;width:auto}
-.sb{position:fixed;top:0;left:-280px;width:260px;height:100vh;background:#141420;z-index:100;transition:left .25s;overflow-y:auto;padding:14px}
-.sb.open{left:0}.ov{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:99;display:none}.ov.show{display:block}
-.mi{display:flex;align-items:center;gap:10px;padding:13px 16px;font-size:15px;cursor:pointer;border:none;background:none;color:#fff;width:100%;text-align:left}
-.mu{background:#7c3aed;padding:10px;border-radius:10px;margin:4px 0;text-align:right}
-.mo{background:#141420;border:1px solid #2a2a38;padding:10px;border-radius:10px;margin:4px 0}
-.lb{margin-top:80px}.gf{width:80px;height:80px;cursor:pointer;border-radius:10px;margin:4px}
-.stk{width:70px;height:70px;border-radius:15px;cursor:pointer;object-fit:cover;margin:4px}
-.vb{background:#ef4444;color:#fff;border:none;width:50px;height:50px;border-radius:50%;font-size:22px;cursor:pointer;margin:6px auto}
+body{background:#0a0a12;color:#fff;font-family:Arial;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
+h1{color:#a78bfa;font-size:28px;margin-bottom:10px}
+p{color:#999;font-size:16px}
+.emoji{font-size:70px;margin-bottom:20px}
 </style>
 </head>
 <body>
-<div class="ov" id="ov" onclick="cm()"></div>
-<div class="sb" id="sb"><div style="text-align:center;padding:15px;background:#141420;border-radius:12px;margin-bottom:10px"><div class="av" id="sa" style="margin:0 auto 8px;width:60px;height:60px;font-size:28px">🐉</div><b id="sn">Имя</b><p class="sm" id="su">@user</p><p class="sm" style="color:#f59e0b">⭐ <span id="ss">0</span></p></div>
-<button class="mi" onclick="op('main')">💬 Чаты</button><button class="mi" onclick="op('ai')">🤖 Danilah AI</button><button class="mi" onclick="op('profile')">👤 Профиль</button><button class="mi" onclick="op('search')">🔍 Поиск</button><button class="mi" onclick="op('stars')">⭐ Звёзды</button><button class="mi" onclick="op('gifts')">🎁 Подарки</button><button class="mi" onclick="op('promo')">🎫 Промокоды</button><button class="mi" onclick="lo()" style="color:#ef4444">🚪 Выйти</button></div>
-<div class="pg on" id="wel"><div style="text-align:center;padding:50px 0"><p style="font-size:70px">🐉</p><h1 style="color:#a78bfa">DANILAH</h1><br><button class="bp" onclick="sh('login')">🚀 Начать</button></div></div>
-<div class="pg" id="login"><h2 style="color:#a78bfa;text-align:center">Вход</h2><div class="lb"><button class="bp" onclick="sh('phone')">📱 По телефону</button><button class="bo" onclick="sh('code')">🔐 По коду</button><button class="bo" onclick="sh('help')">🤖 Нет кода</button></div></div>
-<div class="pg" id="phone"><h2 style="color:#a78bfa">📱 Телефон</h2><input type="tel" id="ph" placeholder="+7 999 123-45-67"><button class="bp" onclick="pl()">Получить код</button><p class="sm" id="smg"></p><button class="bo" onclick="sh('login')">← Назад</button></div>
-<div class="pg" id="code"><h2 style="color:#a78bfa">🔐 Вход по коду</h2><input type="text" id="ci" placeholder="Код доступа"><input type="text" id="ui" placeholder="@Username"><button class="bp" onclick="li()">Войти</button><button class="bo" onclick="sh('login')">← Назад</button></div>
-<div class="pg" id="help"><h2 style="color:#a78bfa">🤖 Нет кода</h2><div class="bx" style="height:150px;overflow-y:auto" id="hc"><div class="mo">👋 Напиши!</div></div><input type="text" id="hi" placeholder="Напишите..."><button class="bp" onclick="hs()">Отправить</button><button class="bo" onclick="sh('login')">← Назад</button></div>
-<div class="pg" id="main"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><button class="mb" onclick="om()">☰</button><h2 style="color:#a78bfa">🐉 DANILAH</h2></div><p class="sm" id="wm"></p><div class="li" onclick="sh('generalChat')"><div class="av">💬</div><div><b>Общий чат</b></div></div><div class="li" onclick="sh('ai')"><div class="av">🤖</div><div><b>Danilah AI</b></div></div><div class="li" onclick="sh('support')"><div class="av">🛟</div><div><b>Поддержка</b></div></div><div class="li" onclick="sh('news')"><div class="av">📰</div><div><b>Новости</b></div></div><div class="li" onclick="sh('search')"><div class="av">🔍</div><div><b>Поиск</b></div></div></div>
-<div class="pg" id="generalChat"><h2 style="color:#a78bfa">💬 Общий чат</h2><div class="bx" style="height:200px;overflow-y:auto" id="gc"><p class="sm">Сообщений нет</p></div><input type="text" id="gi" placeholder="Сообщение..."><button class="bp" onclick="sg()">Отправить</button><button class="bo" onclick="sh('stickersPage')">🎨 Стикеры</button><button class="bo" onclick="sh('gifsPage')">🎬 GIF</button><button class="vb" id="vb" onclick="tv()">🎤</button><button class="bb" onclick="tc()">⭕ Кружочек</button><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="stickersPage"><h2 style="color:#a78bfa">🎨 Стикеры</h2><input type="file" id="sf" accept="image/*" style="display:none" onchange="us()"><button class="bp" onclick="document.getElementById('sf').click()">➕ Свой стикер</button><div id="sl" style="text-align:center"></div><button class="bo" onclick="sh('generalChat')">← Назад</button></div>
-<div class="pg" id="gifsPage"><h2 style="color:#a78bfa">🎬 GIF</h2><div id="gl" style="text-align:center"></div><button class="bo" onclick="sh('generalChat')">← Назад</button></div>
-<div class="pg" id="ai"><h2 style="color:#a78bfa">🤖 Danilah AI</h2><div class="bx" style="height:180px;overflow-y:auto" id="ac"><div class="mo">👋 Спроси!</div></div><input type="text" id="ai" placeholder="Вопрос..."><button class="bp" onclick="as()">Отправить</button><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="support"><h2 style="color:#a78bfa">🛟 Поддержка</h2><button class="bo" onclick="sp()">Как получить код?</button><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="news"><h2 style="color:#a78bfa">📰 Новости</h2><div id="nl"></div><div id="ne" style="display:none"><input type="text" id="ni" placeholder="Новость..."><button class="bp" onclick="an()">Опубликовать</button></div><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="search"><h2 style="color:#a78bfa">🔍 Поиск</h2><input type="text" id="si" placeholder="Поиск..." oninput="ds()"><div id="sr"></div><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="profile"><h2 style="color:#a78bfa">👤 Профиль</h2><div class="bx" style="text-align:center"><div class="av" id="pa" style="margin:0 auto 10px;width:70px;height:70px;font-size:30px;cursor:pointer" onclick="document.getElementById('ai2').click()">🐉</div><input type="file" id="ai2" accept="image/*" style="display:none" onchange="ua()"><b id="pn">Имя</b><p class="sm" id="pu">@user</p><p class="sm" id="pr">Роль</p><p class="sm" style="color:#f59e0b">⭐ <span id="ps">0</span></p></div><button class="bp" onclick="document.getElementById('ai2').click()">🖼 Аватарка</button><button class="bo" onclick="cn()">✏️ Имя</button><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="stars"><h2 style="color:#a78bfa">⭐ Звёзды</h2><p>У вас: <b id="sc">0</b> ⭐</p><div class="bx"><b>100⭐ = 50₽</b> <button class="bg" onclick="bs(100)">Купить</button></div><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="gifts"><h2 style="color:#a78bfa">🎁 Подарки</h2><p class="sm">⭐ <span id="sc2">0</span></p><div class="bx"><b>🧸 Мишка — 15⭐</b> <button class="bb" onclick="sg2(15)">Отправить</button></div><button class="bo" onclick="sh('main')">← Назад</button></div>
-<div class="pg" id="promo"><h2 style="color:#a78bfa">🎫 Промокоды</h2><input type="text" id="pi" placeholder="Промокод"><button class="bp" onclick="up()">Активировать</button><p class="sm" id="pm"></p><button class="bo" onclick="sh('main')">← Назад</button></div>
-<script>
-var users=[{name:'Владелец',username:'@Durov',code:'QQO1098',role:'owner',stars:999999,banned:false,avatar:''},{name:'Avery',username:'@avery',code:'22814886769',role:'tester',stars:100,banned:false,avatar:''}];
-var cu=null,up2={},gm=[],nl=[],mr=null,rc=[],ir=false,stk=[];
-var gf2=['https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif','https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif','https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif'];
-function sh(id){var ps=document.querySelectorAll('.pg');for(var i=0;i<ps.length;i++)ps[i].classList.remove('on');document.getElementById(id).classList.add('on');if(id==='main')um();if(id==='generalChat')rg();if(id==='news')rn();if(id==='stickersPage')rs();if(id==='gifsPage')rg2();}
-function om(){document.getElementById('sb').classList.add('open');document.getElementById('ov').classList.add('show');if(cu){document.getElementById('sn').textContent=cu.name;document.getElementById('su').textContent=cu.username;document.getElementById('ss').textContent=cu.stars;}}
-function cm(){document.getElementById('sb').classList.remove('open');document.getElementById('ov').classList.remove('show');}
-function op(p){cm();sh(p);}
-function li(){var c=document.getElementById('ci').value.trim(),u=document.getElementById('ui').value.trim();for(var i=0;i<users.length;i++){if(users[i].username===u&&users[i].code===c){if(users[i].banned){alert('🚫 ЗАБАНЕН');return}cu=users[i];up3();sh('main');return}}alert('Неверный код');}
-function pl(){var ph=document.getElementById('ph').value.replace(/\D/g,'');if(ph.length<10){alert('Введите номер');return}var code=Math.floor(100000+Math.random()*900000).toString();document.getElementById('smg').textContent='📱 Код: '+code;cu={name:'Пользователь',username:'@user'+ph.slice(-4),code:code,role:'user',stars:0,banned:false,avatar:''};users.push(cu);up3();sh('main');}
-function hs(){var t=document.getElementById('hi').value.trim();if(!t)return;document.getElementById('hc').innerHTML+='<div class="mu">'+t+'</div>';document.getElementById('hi').value='';}
-function um(){if(cu)document.getElementById('wm').textContent='Привет, '+cu.name+'!';}
-function up3(){document.getElementById('pn').textContent=cu.name;document.getElementById('pu').textContent=cu.username;document.getElementById('pr').textContent=cu.role;document.getElementById('ps').textContent=cu.stars;document.getElementById('sc').textContent=cu.stars;document.getElementById('sc2').textContent=cu.stars;if(cu.avatar)document.getElementById('pa').innerHTML='<img src="'+cu.avatar+'">';else document.getElementById('pa').textContent='🐉';}
-function rs(){var h='';for(var i=0;i<stk.length;i++)h+='<img src="'+stk[i]+'" class="stk" onclick="sst('+i+')">';if(!stk.length)h='<p class="sm">Нажми «+ Свой стикер»</p>';document.getElementById('sl').innerHTML=h;}
-function us(){var f=document.getElementById('sf').files[0];if(!f)return;var r=new FileReader();r.onload=function(e){stk.push(e.target.result);rs();};r.readAsDataURL(f);}
-function sst(i){gm.push({from:cu.username,type:'sticker',text:stk[i]});sh('generalChat');}
-function rg2(){var h='';for(var i=0;i<gf2.length;i++)h+='<img src="'+gf2[i]+'" class="gf" onclick="sgf('+i+')">';document.getElementById('gl').innerHTML=h;}
-function sgf(i){gm.push({from:cu.username,type:'gif',text:gf2[i]});sh('generalChat');}
-function rg(){var b=document.getElementById('gc');if(!gm.length){b.innerHTML='<p class="sm">Сообщений нет</p>';return}var h='';for(var i=0;i<gm.length;i++){var m=gm[i],c=m.from===cu.username?'mu':'mo';if(m.type==='sticker')h+='<div class="'+c+'"><img src="'+m.text+'" style="width:70px;border-radius:15px"></div>';else if(m.type==='gif')h+='<div class="'+c+'"><img src="'+m.text+'" style="width:100px;border-radius:10px"></div>';else if(m.type==='voice')h+='<div class="'+c+'"><audio controls src="'+m.text+'"></audio></div>';else if(m.type==='circle')h+='<div class="'+c+'"><video src="'+m.text+'" style="width:80px;height:80px;border-radius:50%;object-fit:cover" controls></video></div>';else h+='<div class="'+c+'">'+m.text+'</div>';}b.innerHTML=h;}
-function sg(){var t=document.getElementById('gi').value.trim();if(!t)return;gm.push({from:cu.username,type:'text',text:t});document.getElementById('gi').value='';rg();}
-function tv(){if(ir){mr.stop();ir=false;document.getElementById('vb').textContent='🎤';}else{navigator.mediaDevices.getUserMedia({audio:true}).then(function(s){mr=new MediaRecorder(s);rc=[];mr.ondataavailable=function(e){rc.push(e.data)};mr.onstop=function(){var b=new Blob(rc,{type:'audio/webm'}),u=URL.createObjectURL(b);gm.push({from:cu.username,type:'voice',text:u});rg();};mr.start();ir=true;document.getElementById('vb').textContent='⏹';}).catch(function(){alert('Нет микрофона');});}}
-function tc(){navigator.mediaDevices.getUserMedia({video:true}).then(function(s){var r=new MediaRecorder(s),c=[];r.ondataavailable=function(e){c.push(e.data)};r.onstop=function(){var b=new Blob(c,{type:'video/webm'}),u=URL.createObjectURL(b);gm.push({from:cu.username,type:'circle',text:u});rg();};r.start();setTimeout(function(){r.stop()},5000);}).catch(function(){alert('Нет камеры');});}
-function as(){var t=document.getElementById('ai').value.trim();if(!t)return;document.getElementById('ac').innerHTML+='<div class="mu">'+t+'</div><div class="mo">🤖 Я учусь!</div>';document.getElementById('ai').value='';}
-function sp(){alert('✅ Отправлено!');sh('main');}
-function rn(){var b=document.getElementById('nl');if(!nl.length)b.innerHTML='<p class="sm">Нет новостей</p>';else{var h='';for(var i=0;i<nl.length;i++)h+='<div class="bx">📰 '+nl[i].text+'</div>';b.innerHTML=h;}document.getElementById('ne').style.display=(cu&&cu.role==='owner')?'block':'none';}
-function an(){var t=document.getElementById('ni').value.trim();if(!t)return;nl.push({text:t});document.getElementById('ni').value='';rn();}
-function ds(){var q=document.getElementById('si').value.trim().toLowerCase(),b=document.getElementById('sr');if(!q){b.innerHTML='';return}var h='';for(var i=0;i<users.length;i++){if(users[i].username.toLowerCase().indexOf(q)!==-1||users[i].name.toLowerCase().indexOf(q)!==-1)h+='<div class="li" onclick="vu('+i+')"><div class="av">👤</div><div><b>'+(users[i].banned?'ЗАБАНЕН':users[i].name)+'</b><p class="sm">'+users[i].username+'</p></div></div>';}b.innerHTML=h||'<p class="sm">Не найдено</p>';}
-function vu(i){var u=users[i],h='<b>'+(u.banned?'ЗАБАНЕН':u.name)+'</b><p class="sm">'+u.username+'</p>';if(cu&&cu.role==='owner'&&u.role!=='owner')h+='<button class="br" onclick="bu('+i+')">'+(u.banned?'✅ Разбанить':'🚫 ЗАБАНИТЬ')+'</button>';h+='<button class="bo" onclick="sh(\'search\')">← Назад</button>';document.getElementById('sr').innerHTML='<div class="bx">'+h+'</div>';}
-function bu(i){users[i].banned=!users[i].banned;alert(users[i].banned?'🚫 ЗАБАНЕН!':'✅ Разбанен!');ds();}
-function bs(n){if(!cu||cu.role==='owner'){alert('❌');return}if(confirm('Купить '+n+'⭐?')){cu.stars+=n;up3();}}
-function up(){var c=document.getElementById('pi').value.trim(),m=document.getElementById('pm');if(!c){m.textContent='Введите';return}if(up2[c]){m.textContent='❌ Использован';return}if(c==='freetest2026'){cu.stars+=100;m.textContent='✅ +100⭐'}else if(c==='2026Daniag'){cu.stars+=200;m.textContent='✅ +200⭐'}else if(c==='daniagfreestar'){cu.stars+=200;m.textContent='✅ +200⭐'}else if(c==='sspremssqw'){cu.role='premium';m.textContent='✅ Premium 2 дня!'}else if(c==='Sorry2026'){cu.role='premium';cu.stars+=100;m.textContent='✅ Premium +100⭐'}else{m.textContent='❌ Неверно';return}up2[c]=true;up3();}
-function sg2(p){if(!cu||cu.stars<p){alert('❌ Мало ⭐');return}cu.stars-=p;up3();alert('✅ Отправлено!');}
-function cn(){var n=prompt('Новое имя:');if(n&&cu){cu.name=n;up3();}}
-function ua(){var f=document.getElementById('ai2').files[0];if(!f||!cu)return;var r=new FileReader();r.onload=function(e){cu.avatar=e.target.result;up3();};r.readAsDataURL(f);}
-function lo(){cu=null;cm();sh('wel');}
-</script>
+<div>
+    <div class="emoji">🔧</div>
+    <h1>DANILAH</h1>
+    <p>Мессенджер на обновлении!<br>Зайдите позже!</p>
+</div>
 </body>
-                                                                    </html>
+</html>
